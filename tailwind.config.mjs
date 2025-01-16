@@ -11,6 +11,10 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        prompt:['Prompt', 'sans-serif'],
+        playfair: ['Playfair Display', 'serif'],
+      }
     },
   },
   plugins: [],

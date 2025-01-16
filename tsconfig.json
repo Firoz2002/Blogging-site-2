@@ -28,7 +28,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, ".trash/NavigationBar.tsx", "src/app/_app.js"  ],
   "exclude": [
     "node_modules"
   ]

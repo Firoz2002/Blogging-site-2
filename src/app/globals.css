@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -18,4 +19,114 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+h5 {
+  color: #000000;
+  font-weight: 500;
+  line-height: 1.3;
+  font-family: "helveticaneuemedium", sans-serif;
+}
+
+a {
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms;
+  text-decoration: none;
+  outline: none;
+  font-size: 14px;
+  font-family: "helveticaneuemedium", sans-serif;
+  color: #4f4d4d;
+}
+
+p {
+  color: #878787;
+  font-size: 14px;
+  line-height: 1.4;
+  font-family: "helveticaneuemedium", sans-serif;
+}
+
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+    margin: auto 70px;
+  }
+}
+
+.line {
+  background-color: #c8c8c8;
+  width: 26px;
+  height: 2px;
+  margin-bottom: 20px;
+}
+
+.post_tag {
+  color: #a1a1a1;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.post_title {
+  display: inline-block;
+  color: #000000;
+  font-size: 24px;
+  margin-bottom: 30px;
+  font-family: "helveticaneuemedium", sans-serif;
+  font-weight: 500;
+}
+
+.post_content p {
+  line-height: 2;
+  margin-bottom: 30px;
+  color: #878787;
+  font-size: 14px;
+  line-height: 2;
+  font-family: "helveticaneuemedium", sans-serif;
+}
+
+.post_meta p {
+  font-size: 9px;
+  text-transform: uppercase;
+  margin-bottom: 0;
+  letter-spacing: 3px;
+  display: inline-block;
+}
+
+.post_meta p:first-of-type {
+  margin-right: 30px;
+}
+
+.post_meta p a {
+  font-size: 9px;
+  text-transform: uppercase;
+  color: #000000;
+  letter-spacing: 3px;
 }
