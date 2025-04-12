@@ -1,15 +1,29 @@
-import React from 'react'
+"use client";
+import React, { useEffect } from 'react'
 import Image from 'next/image'
+import { useRouter, useParams, usePathname } from 'next/navigation';
+
 
 import styles from "./styles.module.css";
 import Sidebar from '../../../../components/sections/Sidebar';
 
 export default function BlogPostPage() {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    fetch('/api' + pathname)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  }, []);
+
   return (
     <div>
       <div className="w-full h-auto mb-[50px] relative">
         <img src={'/bg_img/b5.jpg'} alt="blog-cover-image" className="object-cover"/>
-        <div className={`${styles.comment_date}`}>
+        <div className={`post_date`}>
           <a href="#">
             12
             <span>march</span>

@@ -216,7 +216,7 @@
       animation: lens-out 0.5s linear 1 forwards; }
     #search_wrapper:after {
       position: absolute;
-      bottom: 3px;
+      bottom: 25px;
       right: -9px;
       display: block;
       content: "";

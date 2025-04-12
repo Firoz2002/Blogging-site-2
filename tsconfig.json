@@ -28,7 +28,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, ".trash/NavigationBar.tsx", "src/app/_app.js"  ],
+, ".trash/NavigationBar.tsx", "src/app/_app.js", "src/components/sections/Carousel.js", "src/app/api/upload.js", ".trash/blog.ts"  ],
   "exclude": [
     "node_modules"
   ]

@@ -1,26 +1,28 @@
 'use client'
 import React from 'react';
+import Link from 'next/link';
 
 import Navbar from './Navbar';
+import { Ticker } from '../ticker/Ticker';
 import styles from './styles.module.css';
+
+const items = [
+  "Hello World!",
+  "Hello Universe!",
+  "Hello Original!",
+  "Hello Earth!",
+  "Hello Colorlib!"
+];
 
 export default function Header() {
   return (
     <header className={styles.header}>
-      <div className="container h-[65px] flex items-center overflow-hidden">
-        <div className={`${styles.ticker} max-h-[21px] w-full sm:w-2/3 `}>
-          <ul>
-            <li><a href="#">Hello World!</a></li>
-            <li><a href="#">Hello Universe!</a></li>
-            <li><a href="#">Hello Original!</a></li>
-            <li><a href="#">Hello Earth!</a></li>
-            <li><a href="#">Hello Colorlib!</a></li>
-          </ul>
-        </div>
-      </div>
-      <div className={`${styles.logo} text-center`}>
+      <Ticker items={items} />
+
+      <Link href={"/"} className={`${styles.logo} text-center`}>
           <img src="/logo.png" alt="" />
-      </div>
+      </Link>
+      
       <Navbar />
     </header>
   )

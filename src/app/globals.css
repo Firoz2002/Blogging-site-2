@@ -45,39 +45,6 @@ p {
   font-family: "helveticaneuemedium", sans-serif;
 }
 
-.container {
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-@media (min-width: 576px) {
-  .container {
-    max-width: 540px;
-  }
-}
-
-@media (min-width: 768px) {
-  .container {
-    max-width: 720px;
-  }
-}
-
-@media (min-width: 992px) {
-  .container {
-    max-width: 960px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .container {
-    max-width: 1140px;
-    margin: auto 70px;
-  }
-}
-
 .line {
   background-color: #c8c8c8;
   width: 26px;
@@ -99,11 +66,12 @@ p {
   color: #000000;
   font-size: 24px;
   margin-bottom: 30px;
+  cursor: pointer;
   font-family: "helveticaneuemedium", sans-serif;
   font-weight: 500;
 }
 
-.post_content p {
+.post_content, .post_content p {
   line-height: 2;
   margin-bottom: 30px;
   color: #878787;
@@ -129,4 +97,31 @@ p {
   text-transform: uppercase;
   color: #000000;
   letter-spacing: 3px;
+}
+
+.post_date {
+    position: absolute;
+    z-index: 10;
+    left: 15px;
+    top: 15px;
+    border: 1px solid #787878;
+    background-color: #ffffff;
+    padding: 20px 8px;
+    text-align: center;
+}
+
+.post_date a {
+    font-size: 24px;
+    text-transform: uppercase;
+    color: #000000;
+    line-height: 1;
+    font-weight: 600;
+    font-family: "helveticaneuemedium", sans-serif;
+}
+
+.post_date a span {
+    display: block;
+    font-family: "Open Sans", sans-serif;
+    font-size: 11px;
+    color: #878787;
 }
