@@ -1,4 +1,4 @@
-FROM node:18 AS base
+FROM node:18-alpine AS base
 
 # Install build dependencies for bcrypt native module
 RUN apk add --no-cache python3 make g++ 
