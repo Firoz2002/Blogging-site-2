@@ -1,4 +1,4 @@
-import BlogCard from '../cards/BlogCard'
+import BlogCard from '@components/cards/BlogCard'
 import Sidebar from './Sidebar'
 import styles from './styles.module.css'
 

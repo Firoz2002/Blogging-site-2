@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react'
-import TextEditor from '../../../components/editor/TextEditor';
+import TextEditor from '@components/editor/TextEditor';
 
 export default function WriteABlog() {
   const [file, setFile] = useState(null);

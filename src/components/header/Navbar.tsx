@@ -1,34 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { signOut, useSession } from 'next-auth/react';
 import { Menu, UnstyledButton } from '@mantine/core';
 import { IconChevronDown, IconUser } from '@tabler/icons-react';
 
-import Login from '../forms/Login';
-import Register from '../forms/Register';
+import Login from '@components/forms/Login';
+import Register from '@components/forms/Register';
 import styles from './styles.module.css';
+
+const categories = [
+  { name: 'Lifestyle', link: '/blogs?category=lifestyle' },
+  { name: 'Travel', link: '/blogs?category=travel' },
+  { name: 'Music', link: '/blogs?category=music' },
+  { name: 'Fashion', link: '/blogs?category=fashion' },
+  { name: 'Food', link: '/blogs?category=food' },
+]
 
 export default function Navbar() {
   const [popupType, setPopupType] = useState<'login' | 'register' | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
+  const { data: session, status } = useSession();
+
   useEffect(() => {
-    const checkLoginStatus = () => {
-      const loggedIn = localStorage.getItem('isLoggedIn') === 'true';
-      setIsLoggedIn(loggedIn);
+    const handleAuthStateChange = () => {
+      if(status === 'authenticated') {
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }
     };
 
-    checkLoginStatus();
-
-    window.addEventListener('storage', checkLoginStatus);
-    window.addEventListener('authStateChanged', checkLoginStatus);
-
-    return () => {
-      window.removeEventListener('storage', checkLoginStatus);
-      window.removeEventListener('authStateChanged', checkLoginStatus);
-    };
-  }, []);
+    handleAuthStateChange();
+  }, [status]);
 
   const handleClick = (type: 'login' | 'register') => {
     setPopupType(type);
@@ -60,11 +66,13 @@ export default function Navbar() {
                   </UnstyledButton>
                 </Menu.Target>
                 <Menu.Dropdown>
-                  <Menu.Item>Lifestyle</Menu.Item>
-                  <Menu.Item>Travel</Menu.Item>
-                  <Menu.Item>Music</Menu.Item>
-                  <Menu.Item>Fashion</Menu.Item>
-                  <Menu.Item>Food</Menu.Item>
+                  {categories.map((category) => (
+                    <Menu.Item key={category.name}>
+                      <Link href={category.link} className="text-sm">
+                        {category.name}
+                      </Link>
+                    </Menu.Item>
+                  ))}
                 </Menu.Dropdown>
               </Menu>
             </li>
@@ -110,11 +118,7 @@ export default function Navbar() {
                     <Menu.Item component={Link} href="/settings">Settings</Menu.Item>
                     <Menu.Divider />
                     <Menu.Item
-                      onClick={() => {
-                        localStorage.removeItem('isLoggedIn');
-                        setIsLoggedIn(false);
-                        window.dispatchEvent(new Event('authStateChanged'));
-                      }}
+                      onClick={() => {signOut({ callbackUrl: '/' });}}
                     >
                       Logout
                     </Menu.Item>

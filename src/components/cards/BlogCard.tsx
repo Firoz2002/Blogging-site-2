@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import React, { FC } from 'react'
+import Image from 'next/image';
+import React, { FC } from 'react';
 
 interface BlogCardProps { 
   tag: string,
@@ -27,7 +28,7 @@ const BlogCard: FC<BlogCardProps> = ({tag, date, title, content, comments, cover
         <div className="line"></div>
         <h5 className="post_tag"> {tag} </h5>
 
-        <Link href={`/blog/${title.replace(/\s+/g, '-').toLowerCase()}`}>
+        <Link href={`/blogs/${title.replace(/\s+/g, '-').toLowerCase()}`}>
           <h4 className="post_title"> {title} </h4>
         </Link>
         <p className="post_content"> {content} </p>

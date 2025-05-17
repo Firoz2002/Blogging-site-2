@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useTickerAnimation } from '../../hooks/useTickerAnimation'
+import { useTickerAnimation } from '@hooks/useTickerAnimation'
 
 interface TickerProps {
   items: string[]

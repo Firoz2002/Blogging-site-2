@@ -3,7 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 
 import Navbar from './Navbar';
-import { Ticker } from '../ticker/Ticker';
+import { Ticker } from '@components/ticker/Ticker';
 import styles from './styles.module.css';
 
 const items = [

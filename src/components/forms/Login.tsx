@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { IconX } from '@tabler/icons-react';
 
 import styles from './styles.module.css';
-import { PopupProps } from '../../types/AuthPopupProps';
+import { PopupProps } from '@/types/AuthPopupProps';
 
 const Login: FC<PopupProps> = ({ isOpen, onClose, setPopupType }) => {
   const router = useRouter();
@@ -34,6 +34,12 @@ const Login: FC<PopupProps> = ({ isOpen, onClose, setPopupType }) => {
         email: formData.email,
         password: formData.password,
       });
+
+      if (response?.error) {
+        setError('Invalid email or password. Please try again.');
+      } else {
+        onClose();
+      }
     } catch (err) {
       setError('Failed to login. Please check your credentials.');
       console.error(err);

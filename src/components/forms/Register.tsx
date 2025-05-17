@@ -3,8 +3,9 @@ import React, { FC, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import styles from './styles.module.css';
+import { signIn } from 'next-auth/react';
 import { IconX } from '@tabler/icons-react';
-import { PopupProps } from '../../types/AuthPopupProps';
+import { PopupProps } from '@/types/AuthPopupProps';
 
 const Register:FC<PopupProps> = ({ isOpen, onClose, setPopupType }) => {
   const router = useRouter();
@@ -28,25 +29,36 @@ const Register:FC<PopupProps> = ({ isOpen, onClose, setPopupType }) => {
     e.preventDefault();
     setError('');
     
-    // Basic validation
     if (formData.password !== formData.confirmPassword) {
       setError('Passwords do not match');
       return;
     }
     
     try {
-      // Here you would typically call your registration API
-      console.log('Registration attempt with:', formData);
-      
-      // For demo purposes, we'll just simulate a successful registration
-      // In a real app, you would send this data to your backend
-      localStorage.setItem('isLoggedIn', 'true');
-      
-      // Notify components about auth state change
-      window.dispatchEvent(new Event('authStateChanged'));
-      
-      // Redirect to home page after successful registration
-      router.push('/');
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        const res = await signIn('credentials', {
+          redirect: false,
+          email: formData.email,
+          password: formData.password,
+        });
+
+        if (res?.error) {
+          setError('Login failed. Please try again.');
+        } else {
+          onClose();
+          router.refresh();
+        }
+      } else {
+        setError(data.error || 'Registration failed. Please try again.');
+      }
     } catch (err) {
       setError('Failed to register. Please try again.');
       console.error(err);

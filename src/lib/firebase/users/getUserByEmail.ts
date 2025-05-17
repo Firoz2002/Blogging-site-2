@@ -1,4 +1,4 @@
-import { db } from "../../app/config/firebase/config";
+import { db } from "@app/config/firebase/config";
 import { collection, query, where, getDocs } from "firebase/firestore";
 
 export async function getUserByEmail(email: string) {

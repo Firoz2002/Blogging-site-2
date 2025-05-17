@@ -2,10 +2,11 @@
 'use client'
 import { MantineProvider } from '@mantine/core';
 import { useLocalStorage } from '@mantine/hooks';
+import { SessionProvider } from "next-auth/react";
 
 import './globals.css';
-import Header from "../components/header/Header";
-import Footer from "../components/footer/Footer";
+import Header from "@components/header/Header";
+import Footer from "@components/footer/Footer";
 
 export default function RootLayout({ children }) {
   // Get the color scheme from local storage or default to 'light'
@@ -21,11 +22,13 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
+          <SessionProvider>
           <div>
             <Header />
               {children}
             <Footer />
           </div>
+          </ SessionProvider>
         </MantineProvider>
       </body>
     </html>

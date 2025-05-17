@@ -5,7 +5,7 @@ import { useRouter, useParams, usePathname } from 'next/navigation';
 
 
 import styles from "./styles.module.css";
-import Sidebar from '../../../../components/sections/Sidebar';
+import Sidebar from '@components/sections/Sidebar';
 
 export default function BlogPostPage() {
   const router = useRouter();

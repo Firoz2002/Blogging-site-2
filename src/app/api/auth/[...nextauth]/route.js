@@ -1,11 +1,20 @@
+import { compare } from "bcrypt";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { compare } from "bcrypt";
 
 import { getUserByEmail } from "../../../../lib/firebase/users/getUserByEmail";
 
 export const authOptions = {
+  secret: process.env.NEXTAUTH_SECRET,
+  session: {
+    strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60,
+  },
+  pages: {
+    signIn: "/login",
+    error: "/auth/error",
+  },
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
@@ -37,6 +46,7 @@ export const authOptions = {
           name: user.name,
           email: user.email,
           image: user.image,
+          joinedDate: user.createdAt,
         };
       },
     }),
@@ -48,15 +58,23 @@ export const authOptions = {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
+        token.name = user.name;
+        token.email = user.email;
+        token.picture = user.image;
+        token.joinedDate = user.joinedDate;
       }
       return token;
-    },
+    },    
     async session({ session, token }) {
       if (token) {
         session.user.id = token.id;
+        session.user.name = token.name;
+        session.user.email = token.email;
+        session.user.image = token.picture;
+        session.user.joinedDate = token.joinedDate;
       }
       return session;
-    },
+    }    
   },
 };
 
