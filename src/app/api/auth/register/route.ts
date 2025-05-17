@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { hash } from "bcrypt";
+import { hash } from "bcryptjs";
 import { createUser } from "@/lib/firebase/users/createUser";
 
 export async function POST(req: Request) {

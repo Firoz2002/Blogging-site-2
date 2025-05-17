@@ -1,10 +1,10 @@
 import { getToken } from 'next-auth/jwt';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { db } from '../../config/firebase/config';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
 import { getBlogsByUserId } from '@/lib/firebase/blogs/getBlogsByUserId';
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
 
@@ -21,7 +21,7 @@ export async function POST(req: Request) {
   }
 }
 
-export async function GET(req: Request) {
+export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
 

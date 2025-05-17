@@ -1,11 +1,11 @@
-import { compare } from "bcrypt";
+import { compare } from "bcryptjs";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 import { getUserByEmail } from "../../../../lib/firebase/users/getUserByEmail";
 
-export const authOptions = {
+const authOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   session: {
     strategy: "jwt",

@@ -16,7 +16,7 @@ const BlogCard: FC<BlogCardProps> = ({tag, date, title, content, comments, cover
   return (
     <div className="mb-[50px] flex items-center lg:flex-row sm:flex-col">
       <div className="w-full md:w-1/2 mx-[15px] relative">
-        <img src={cover_image} alt="blog_image" />
+        <Image className="w-full" width={683} height={497} layout='responsive' src={cover_image} alt="blog_image" />
         <div className="post_date">
           <a href="#">
             {date}
